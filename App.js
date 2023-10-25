@@ -1,40 +1,103 @@
 import React, { Component } from "react";
-import { View, Text, Image, Button, StyleSheet } from "react-native";
+import { View, Text, Image, Button, StyleSheet, TextInput} from "react-native";
+
+const styles = StyleSheet.create({
+  container:{
+    flex:1
+  },
+  input:{
+    height: 50,
+    borderColor: 'black',
+    borderWidth: 1,
+    margin: 10,
+    color: 'black',
+    padding: 10,
+    fontSize: 30
+  },
+  texto:{
+    fontSize: 40,
+    color: 'pink'
+  }
+});
 
 class App extends Component {
 
+  constructor(props){
+    super(props);
+    this.state = {
+      nome: ""
+    };
+
+    this.pegaNome = this.pegaNome.bind(this);
+  }
+
+  pegaNome(texto){
+    if(texto.length>0){
+      this.setState({nome: 'Bem vindo, '+texto});
+    } else {
+      this.setState({nome: ''});
+    }
+  }
 
   render() {
 
     return (
-      // Utilizamos Flex 1 para o style funcinar no tamanho total da tela
-      // Podemos perceber que com as outras views, o fundo não aparece
-      <View style={{flex:1, backgroundColor: 'yellow'}}>
-
-      {/* View 1 e 4 tem tamanhos fixos, já 2 e 3 utilizam o flex para se adequar */}
-        <View style={{backgroundColor: 'red', height:30}}>
-          <Text style={{color: 'black', fontSize: 25}}>Texto</Text>
-          <Text style={{color: 'black', fontSize: 25}}>Texto</Text>
-          <Text style={{color: 'black', fontSize: 25}}>Texto</Text>
-          <Text style={{color: 'black', fontSize: 25}}>Texto</Text>
-          <Text style={{color: 'black', fontSize: 25}}>Texto</Text>
-          <Text style={{color: 'black', fontSize: 25}}>Texto</Text>
-          <Text style={{color: 'black', fontSize: 25}}>Texto</Text>
-          <Text style={{color: 'black', fontSize: 25}}>Texto</Text>
-          <Text style={{color: 'black', fontSize: 25}}>Texto</Text>
-          <Text style={{color: 'black', fontSize: 25}}>Texto</Text>
-        </View>
-        <View style={{backgroundColor: 'blue', flex:1}}></View>
-        <View style={{backgroundColor: 'green', flex:2}}></View>
-        <View style={{backgroundColor: 'gray', height:40}}></View>
-
+      <View style={styles.container}>
+        <TextInput
+          style={styles.input}
+          placeholder="Digite seu nome"
+          underlineColorAndroid='transparent'
+          onChangeText={this.pegaNome}
+        />
+        <Text style={styles.texto}>{this.state.nome}</Text>
       </View>
     );
   }
-
 }
 
 export default App;
+
+// FLEXBOX
+// return (
+//   <View style={{
+//     flex:1,
+//     flexDirection: 'row',
+//     justifyContent: 'space-around',
+//     alignItems: 'center'
+//     }}>
+
+//     <View style={{backgroundColor: 'red', height:50, width:50}}></View>
+//     <View style={{backgroundColor: 'blue', height:50, width:50}}></View>
+//     <View style={{backgroundColor: 'green', height:50, width:50}}></View>
+//     <View style={{backgroundColor: 'gray', height:50, width:50}}></View>
+
+//   </View>
+// );
+
+// TAMANHOS ***
+// return (
+  // Utilizamos Flex 1 para o style funcinar no tamanho total da tela
+  // Podemos perceber que com as outras views, o fundo não aparece
+  // <View style={{flex:1, backgroundColor: 'yellow'}}>
+
+  {/* View 1 e 4 tem tamanhos fixos, já 2 e 3 utilizam o flex para se adequar */}
+    {/* <View style={{backgroundColor: 'red', height:30}}>
+      <Text style={{color: 'black', fontSize: 25}}>Texto</Text>
+      <Text style={{color: 'black', fontSize: 25}}>Texto</Text>
+      <Text style={{color: 'black', fontSize: 25}}>Texto</Text>
+      <Text style={{color: 'black', fontSize: 25}}>Texto</Text>
+      <Text style={{color: 'black', fontSize: 25}}>Texto</Text>
+      <Text style={{color: 'black', fontSize: 25}}>Texto</Text>
+      <Text style={{color: 'black', fontSize: 25}}>Texto</Text>
+      <Text style={{color: 'black', fontSize: 25}}>Texto</Text>
+      <Text style={{color: 'black', fontSize: 25}}>Texto</Text>
+      <Text style={{color: 'black', fontSize: 25}}>Texto</Text>
+    </View>
+    <View style={{backgroundColor: 'blue', flex:1}}></View>
+    <View style={{backgroundColor: 'green', flex:2}}></View>
+    <View style={{backgroundColor: 'gray', height:40}}></View>
+
+  </View> */}
 
 
 // STYLES****
