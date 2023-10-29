@@ -1,61 +1,58 @@
-import React, { Component } from 'react';
-import { View, StyleSheet, Text} from 'react-native';
+import React, { Component } from "react";
+import { View, Text, StyleSheet } from "react-native";
+import { Picker } from "@react-native-picker/picker";
 
-import {Picker} from '@react-native-picker/picker';
-
-export default class App extends Component {
+export default class App extends Component{
 
   constructor(props){
     super(props);
     this.state = {
       pizza: 0,
-      pizzas: [
-        {key: 1, nome: 'Strogonoff', valor: 35.90},
-        {key: 2, nome: 'Calabresa', valor: 59},
-        {key: 3, nome: 'Quatro queijos', valor: 37},
-        {key: 4, nome: 'Brigadeiro', valor: 25.70},
-        {key: 5, nome: 'Portuguesa', valor: 70},
+      pizzas:[
+        {key: 1, nome: 'frango', preco: 30},
+        {key: 2, nome: 'carne', preco: 40},
+        {key: 2, nome: 'calabresa', preco: 50},
       ]
-    };
-  };
+    }
+  }
 
- render(){
+  render(){
 
-  let pizzasItem = this.state.pizzas.map( (v, k) => {
-    return <Picker.Item key={k} value={k} label={v.nome} />
-  } )
+    let pizzasItem = this.state.pizzas.map( (v, k) =>{
+      return <Picker.Item key={k} value={k} label={v.nome}/>
+    })
 
-  return (
-    <View style={styles.container}>
-      <Text style={styles.logo}>Menu Pizza</Text>
+    return(
+      <View style={styles.container}>
+        <Text style={styles.titulo}>Menu Pizza</Text>
 
-      <Picker
-      selectedValue={this.state.pizza}
-      onValueChange={ (itemValue, itemIndex) =>  this.setState({pizza: itemValue}) }
-      >
-       {pizzasItem}
-      </Picker>
+        <Picker
+          selectedValue={this.state.pizza}
+          onValueChange={ (itemValue, itemIndex )=> this.setState({pizza: itemValue})}
+        >
+          {pizzasItem}
+        </Picker>
 
-      <Text style={styles.pizzas}>Voce escolheu: {this.state.pizzas[this.state.pizza].nome}</Text>
-      <Text style={styles.pizzas}>R$: {this.state.pizzas[this.state.pizza].valor.toFixed(2)}</Text>
-    </View>
-   );
- }
+        <Text style={styles.textos}>Pizza: {this.state.pizzas[this.state.pizza].nome}</Text>
+        <Text style={styles.textos}>R$ {this.state.pizzas[this.state.pizza].preco.toFixed(2)}</Text>
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
-  container:{
-    flex:1,
-    marginTop: 20,
+  container: {
+    flex: 1,
   },
-  logo:{
-    textAlign: 'center',
-    fontSize: 28,
-    fontWeight: 'bold'
+  titulo: {
+    fontWeight: 'bold',
+    fontSize: 45,
+    color: 'black',
+    textAlign: 'center'
   },
-  pizzas:{
-    marginTop: 15,
-    fontSize: 25,
+  textos:{
+    fontSize: 30,
+    color: 'black',
     textAlign: 'center'
   }
-});
+})
