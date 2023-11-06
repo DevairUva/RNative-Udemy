@@ -11,7 +11,7 @@ export default class App extends Component{
       pizzas:[
         {key: 1, nome: 'frango', preco: 30},
         {key: 2, nome: 'carne', preco: 40},
-        {key: 2, nome: 'calabresa', preco: 50},
+        {key: 3, nome: 'calabresa', preco: 50},
       ]
     }
   }
@@ -27,7 +27,9 @@ export default class App extends Component{
         <Text style={styles.titulo}>Menu Pizza</Text>
 
         <Picker
+          // selectedvalue vai trocar o título do picker, nesse caso, usamos o stado de this.state.pizza, que troca todas as vezes que escolhemos uma opção diferente
           selectedValue={this.state.pizza}
+          // sempre que trocar a opção, setamos um novo valor em this.state.pizza
           onValueChange={ (itemValue, itemIndex )=> this.setState({pizza: itemValue})}
         >
           {pizzasItem}
@@ -35,6 +37,7 @@ export default class App extends Component{
 
         <Text style={styles.textos}>Pizza: {this.state.pizzas[this.state.pizza].nome}</Text>
         <Text style={styles.textos}>R$ {this.state.pizzas[this.state.pizza].preco.toFixed(2)}</Text>
+        <Text style={styles.textos}> {this.state.pizza} </Text>
       </View>
     );
   }
